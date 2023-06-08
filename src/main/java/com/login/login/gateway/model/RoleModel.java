@@ -1,18 +1,19 @@
-package com.login.login.model;
+package com.login.login.gateway.model;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "role")
-public class Role {
+public class RoleModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
 
-    Role(){}
-    Role(String name){
+    RoleModel(){}
+
+    public RoleModel(String name){
         this.name = name;
     }
 

@@ -1,19 +1,20 @@
-package com.login.login.model;
+package com.login.login.gateway.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User {
+public class UserModel {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private LocalDate birthDate;
     private String email;
     private String password;
 
@@ -24,17 +25,17 @@ public class User {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles;
+    private List<RoleModel> roleModels;
 
-    public User(){}
+    public UserModel(){}
 
-    public User(String firstName, String lastName, Date birthDate, String email, String password, List<Role> roles) {
+    public UserModel(String firstName, String lastName, LocalDate birthDate, String email, String password, List<RoleModel> roleModels) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+        this.roleModels = roleModels;
     }
 
     public Long getId() {
@@ -61,11 +62,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -85,11 +86,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+    public List<RoleModel> getRoles() {
+        return roleModels;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
+    public void setRoles(List<RoleModel> roleModels) {
+        this.roleModels = roleModels;
     }
 }
